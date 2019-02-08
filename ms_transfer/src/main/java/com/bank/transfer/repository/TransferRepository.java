@@ -12,7 +12,7 @@ import com.bank.transfer.entity.Payment;
 @Repository
 public interface TransferRepository extends JpaRepository<Payment, Long>{
 
-	@Query("SELECT p from Payment p where p.fromAccountNum = :fromAccountNo")
-	List<Payment> getTransferDetails(@Param("fromAccountNo") Long fromAccountNo);
+	@Query("SELECT p from Payment p where p.sourceAccount=:sourceAcc")
+	List<Payment> getTransferDetails(@Param("sourceAcc") Long sourceAcc);
 
 }

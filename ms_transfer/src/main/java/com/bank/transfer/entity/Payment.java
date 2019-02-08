@@ -25,17 +25,15 @@ public class Payment implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	//@SequenceGenerator(name="seqgen", sequenceName="PAYMENT_AUTOINC_SEQ")
 	private Long paymentId;
 	
-	@Column(name="paymentName")
-	private String paymentName;
+	@Column(name="payment_Name")
+	private String paymentName;	
 	
-	
-	@Column(name="fromAccountNum")
+	@Column(name="from_Account_Num")
 	private Long fromAccountNum;
 	
-	@Column(name="toAccountNo")
+	@Column(name="to_Account_No")
 	private Long toAccountNo;
 	
 	@Column(name="amount")
@@ -43,6 +41,9 @@ public class Payment implements Serializable{
 	
 	@Column(name="payment_Date", columnDefinition = "DATE DEFAULT CURRENT_DATE")
 	private Date paymentDate;
+	
+	@Column(name="source_Account")
+	private Long sourceAccount;
 
 	public Long getPaymentId() {
 		return paymentId;
@@ -60,14 +61,7 @@ public class Payment implements Serializable{
 		this.paymentName = paymentName;
 	}
 
-	public Long getFromAccountNo() {
-		return fromAccountNum;
-	}
-
-	public void setFromAccountNo(Long fromAccountNo) {
-		this.fromAccountNum = fromAccountNo;
-	}
-
+	
 	public Long getToAccountNo() {
 		return toAccountNo;
 	}
@@ -90,6 +84,22 @@ public class Payment implements Serializable{
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	public Long getFromAccountNum() {
+		return fromAccountNum;
+	}
+
+	public void setFromAccountNum(Long fromAccountNum) {
+		this.fromAccountNum = fromAccountNum;
+	}
+
+	public Long getSourceAccount() {
+		return sourceAccount;
+	}
+
+	public void setSourceAccount(Long sourceAccount) {
+		this.sourceAccount = sourceAccount;
 	}
 	
 	
