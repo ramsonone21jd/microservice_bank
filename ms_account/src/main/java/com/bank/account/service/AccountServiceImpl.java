@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bank.account.dto.AccountDTO;
+import com.bank.account.entity.Account;
 import com.bank.account.repository.AccountRepository;
+import com.bank.account.util.AccountUtil;
 
 @Service(value="accountService")
 public class AccountServiceImpl implements AccountService {
@@ -30,6 +33,12 @@ public class AccountServiceImpl implements AccountService {
 		}while(accList.contains(accNo));
 		
 		return accNo;
+	}
+
+	@Override
+	public AccountDTO updateAccount(Account account) {
+		Account acc = accountRepository.save(account);
+		return AccountUtil.getAccoutDTO(acc);
 	}
 
 }

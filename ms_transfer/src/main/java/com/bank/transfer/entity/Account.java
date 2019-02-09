@@ -1,4 +1,4 @@
-package com.bank.account.entity;
+package com.bank.transfer.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,28 +13,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name="ACCOUNT")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Account implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long accId;
-	
-	@Column(name="name")
+	private Long accId;	
 	private String name;
-	
-	@Column(name="id_proof")
 	private String idProof;
-	
-	@Column(name="city")
 	private String city;
-	
-	@Column(name="balance")
 	private BigDecimal balance;
-	
-	@Column(name="acc_No")
 	private Long accNo;
 
 	public Long getAccId() {
@@ -77,7 +62,6 @@ public class Account implements Serializable{
 		this.balance = balance;
 	}
 
-	/* @JsonIgnore */
 	public Long getAccNo() {
 		return accNo;
 	}

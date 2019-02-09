@@ -1,12 +1,14 @@
 package com.bank.account.dto;
 
+import java.math.BigDecimal;
+
 public class AccountDTO {
 
     private Long accId;
 	private String name;
     private String idProof;
 	private String city;
-	private Long balance;
+	private BigDecimal balance;
 	private Long accNo;
 	
 	public Long getAccId() {
@@ -33,10 +35,10 @@ public class AccountDTO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Long getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
-	public void setBalance(Long balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	public Long getAccNo() {

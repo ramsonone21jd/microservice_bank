@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.account.dto.AccountDTO;
 import com.bank.account.entity.Account;
 import com.bank.account.repository.AccountRepository;
 import com.bank.account.service.AccountService;
@@ -41,6 +42,11 @@ public class AccountController {
 	@RequestMapping(value="/getAllAccounts", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
 	public List<Account> getAllAccount() {
 		return accountRepository.findAll();
+	}
+	
+	@RequestMapping(value="/updateAccount", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON)
+	public AccountDTO update(@RequestBody Account account) {
+		return accountService.updateAccount(account);
 	}
 
 }

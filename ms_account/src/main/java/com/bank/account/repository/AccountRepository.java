@@ -12,7 +12,7 @@ import com.bank.account.entity.Account;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	@Query("SELECT a.accNo from Account a")
-	 public List<Long> getAllAccountList();
+	public List<Long> getAllAccountList();
 
 	//public Account save(Account account);
 	//public List<Account> findAll();
