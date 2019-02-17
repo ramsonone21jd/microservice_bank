@@ -1,5 +1,6 @@
 package com.bank.account.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,18 @@ public class AccountServiceImpl implements AccountService {
 	public AccountDTO updateAccount(Account account) {
 		Account acc = accountRepository.save(account);
 		return AccountUtil.getAccoutDTO(acc);
+	}
+
+	@Override
+	public AccountDTO getAccount(Long accNo) {
+		Account account = accountRepository.getAccount(accNo);
+		return AccountUtil.getAccoutDTO(account);
+	}
+
+	@Override
+	public AccountDTO updateBalance(Long accNo, BigDecimal balance) {
+		accountRepository.updateBalance(accNo,balance);
+		return getAccount(accNo);
 	}
 
 }

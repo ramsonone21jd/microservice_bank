@@ -1,11 +1,13 @@
 package com.bank.account.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.bank.account.entity.Account;
 import com.bank.account.repository.AccountRepository;
 import com.bank.account.service.AccountService;
 
+@CrossOrigin()
 @RestController
 @RequestMapping(value="/account")
 public class AccountController {
@@ -34,9 +37,9 @@ public class AccountController {
 		return accountRepository.save(account);
 	}
 	
-	@RequestMapping(value="/getAccount/{accId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
-	public Account getAccount(@PathVariable("accId") Long accId) {
-		return accountRepository.getOne(accId);
+	@RequestMapping(value="/getAccount/{accNo}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
+	public AccountDTO getAccount(@PathVariable("accNo") Long accNo) {
+		return accountService.getAccount(accNo);
 	}
 	
 	@RequestMapping(value="/getAllAccounts", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
@@ -44,9 +47,14 @@ public class AccountController {
 		return accountRepository.findAll();
 	}
 	
-	@RequestMapping(value="/updateAccount", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON)
+	@RequestMapping(value="/updateAccount", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON)
 	public AccountDTO update(@RequestBody Account account) {
 		return accountService.updateAccount(account);
+	}
+	
+	@RequestMapping(value="/updateBalance/{accNO}/{balance}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON)
+	public AccountDTO updateBalance(@PathVariable("accNo") Long accNo,@PathVariable("balance") BigDecimal balance) {
+		return accountService.updateBalance(accNo,balance);
 	}
 
 }
