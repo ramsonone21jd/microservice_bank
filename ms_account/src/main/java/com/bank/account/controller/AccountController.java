@@ -18,6 +18,7 @@ import com.bank.account.dto.AccountDTO;
 import com.bank.account.entity.Account;
 import com.bank.account.repository.AccountRepository;
 import com.bank.account.service.AccountService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @CrossOrigin()
 @RestController
@@ -37,9 +38,15 @@ public class AccountController {
 		return accountRepository.save(account);
 	}
 	
+	@HystrixCommand(fallbackMethod="getAccountFallBack")
 	@RequestMapping(value="/getAccount/{accNo}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
 	public AccountDTO getAccount(@PathVariable("accNo") Long accNo) {
 		return accountService.getAccount(accNo);
+	}
+	
+	public AccountDTO getAccountFallBack(Long accNo) {
+		System.out.println("Inside fallback !!!");
+		return new AccountDTO();
 	}
 	
 	@RequestMapping(value="/getAllAccounts", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON)
