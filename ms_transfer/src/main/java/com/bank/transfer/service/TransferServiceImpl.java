@@ -30,7 +30,7 @@ public class TransferServiceImpl implements TransferService {
 	@Autowired
 	private TransferRepository transferRepository;
 
-	RestTemplate restTemplate = new RestTemplate();
+	RestTemplate restTemplate = new RestTemplate();//
 
 	@Transactional
 	public List<PaymentDTO> getTransferDetails(Long accNo) {
